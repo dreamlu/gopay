@@ -22,6 +22,9 @@ func TestMain(m *testing.M) {
 	//    apiKey：API秘钥值
 	client = NewClient(mchId, apiKey)
 
+	// 打开Debug开关，输出日志
+	client.DebugSwitch = gopay.DebugOn
+
 	//err := client.AddCertFilePath(nil, nil, nil)
 	//if err != nil {
 	//	panic(err)
@@ -49,5 +52,15 @@ func TestNotifyResponse_ToXmlString(t *testing.T) {
 	n.ReturnCode = "FAIL"
 	n.ReturnMsg = "abc"
 	xlog.Info(n.ToXmlString())
+}
 
+func TestClient_DownloadRedListFile(t *testing.T) {
+	bm := make(gopay.BodyMap)
+	bm.Set("date", 20160803)
+	file, err := client.DownloadRedListFile(bm)
+	if err != nil {
+		xlog.Errorf("client.DownloadRedListFile(%+v),error:%+v", bm, err)
+		return
+	}
+	xlog.Debug("qqRsp:", file)
 }

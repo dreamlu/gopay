@@ -1,11 +1,10 @@
 package wechat
 
 import (
-	"fmt"
-
 	"github.com/iGoogle-ink/gopay"
 	"github.com/iGoogle-ink/gopay/wechat"
 	"github.com/iGoogle-ink/gotil"
+	"github.com/iGoogle-ink/gotil/xlog"
 )
 
 func Refund() {
@@ -22,7 +21,7 @@ func Refund() {
 	bm.Set("nonce_str", gotil.GetRandomString(32))
 	bm.Set("sign_type", wechat.SignType_MD5)
 	s := gotil.GetRandomString(64)
-	fmt.Println("out_refund_no:", s)
+	xlog.Debug("out_refund_no:", s)
 	bm.Set("out_refund_no", s)
 	bm.Set("total_fee", 1)
 	bm.Set("refund_fee", 1)
@@ -35,9 +34,9 @@ func Refund() {
 	//    pkcs12FilePath：p12证书路径
 	wxRsp, resBm, err := client.Refund(bm, "iguiyu_cert/apiclient_cert.pem", "iguiyu_cert/apiclient_key.pem", "iguiyu_cert/apiclient_cert.p12")
 	if err != nil {
-		fmt.Println("Error:", err)
+		xlog.Error(err)
 		return
 	}
-	fmt.Println("wxRsp：", *wxRsp)
-	fmt.Println("resBm:", resBm)
+	xlog.Debug("wxRsp：", wxRsp)
+	xlog.Debug("resBm:", resBm)
 }

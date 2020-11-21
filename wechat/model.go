@@ -14,28 +14,43 @@ const (
 	baseUrlUs  = "https://apius.mch.weixin.qq.com/" // 其他
 
 	// 正式
-	microPay          = "pay/micropay"                          // 提交付款码支付
-	unifiedOrder      = "pay/unifiedorder"                      // 统一下单
-	orderQuery        = "pay/orderquery"                        // 查询订单
-	closeOrder        = "pay/closeorder"                        // 关闭订单
-	refund            = "secapi/pay/refund"                     // 申请退款
-	reverse           = "secapi/pay/reverse"                    // 撤销订单
-	refundQuery       = "pay/refundquery"                       // 查询退款
-	downloadBill      = "pay/downloadbill"                      // 下载对账单
-	downloadFundFlow  = "pay/downloadfundflow"                  // 下载资金账单
-	report            = "payitil/report"                        // 交易保障
-	batchQueryComment = "billcommentsp/batchquerycomment"       // 拉取订单评价数据
-	transfers         = "mmpaymkttransfers/promotion/transfers" // 企业付款（企业向微信用户个人付款）
-	getTransferInfo   = "mmpaymkttransfers/gettransferinfo"     // 查询企业付款
-	authCodeToOpenid  = "tools/authcodetoopenid"                // 授权码查询openid
-	entrustPublic     = "papay/entrustweb"                      // 公众号纯签约
-	entrustApp        = "papay/preentrustweb"                   // APP纯签约
-	entrustH5         = "papay/h5entrustweb"                    // H5纯签约
-	entrustPaying     = "pay/contractorder"                     // 支付中签约
-	entrustQuery      = "papay/querycontract"                   // 查询签约关系
-	entrustApplyPay   = "pay/pappayapply"                       // 申请扣款
-	entrustDelete     = "papay/deletecontract"                  // 申请解约
-	entrustQueryOrder = "pay/paporderquery"                     // 查询扣款订单
+	microPay                    = "pay/micropay"                                      // 提交付款码支付
+	unifiedOrder                = "pay/unifiedorder"                                  // 统一下单
+	orderQuery                  = "pay/orderquery"                                    // 查询订单
+	closeOrder                  = "pay/closeorder"                                    // 关闭订单
+	refund                      = "secapi/pay/refund"                                 // 申请退款
+	reverse                     = "secapi/pay/reverse"                                // 撤销订单
+	refundQuery                 = "pay/refundquery"                                   // 查询退款
+	downloadBill                = "pay/downloadbill"                                  // 下载对账单
+	downloadFundFlow            = "pay/downloadfundflow"                              // 下载资金账单
+	report                      = "payitil/report"                                    // 交易保障
+	batchQueryComment           = "billcommentsp/batchquerycomment"                   // 拉取订单评价数据
+	transfers                   = "mmpaymkttransfers/promotion/transfers"             // 企业付款（企业向微信用户个人付款）
+	getTransferInfo             = "mmpaymkttransfers/gettransferinfo"                 // 查询企业付款
+	sendCashRed                 = "mmpaymkttransfers/sendredpack"                     // 发放现金红包
+	sendAppletRed               = "mmpaymkttransfers/sendminiprogramhb"               // 发放小程序红包
+	sendGroupCashRed            = "mmpaymkttransfers/sendgroupredpack"                // 发放裂变红包
+	getRedRecord                = "mmpaymkttransfers/gethbinfo"                       // 查询红包记录
+	authCodeToOpenid            = "tools/authcodetoopenid"                            // 授权码查询openid
+	entrustPublic               = "papay/entrustweb"                                  // 公众号纯签约
+	entrustApp                  = "papay/preentrustweb"                               // APP纯签约
+	entrustH5                   = "papay/h5entrustweb"                                // H5纯签约
+	entrustPaying               = "pay/contractorder"                                 // 支付中签约
+	entrustQuery                = "papay/querycontract"                               // 查询签约关系
+	entrustApplyPay             = "pay/pappayapply"                                   // 申请扣款
+	entrustDelete               = "papay/deletecontract"                              // 申请解约
+	entrustQueryOrder           = "pay/paporderquery"                                 // 查询扣款订单
+	profitSharing               = "secapi/pay/profitsharing"                          // 请求单次分账
+	multiProfitSharing          = "secapi/pay/multiprofitsharing"                     // 请求多次分账
+	profitSharingQuery          = "pay/profitsharingquery"                            // 查询分账结果
+	profitSharingAddReceiver    = "pay/profitsharingaddreceiver"                      // 添加分账接收方
+	profitSharingRemoveReceiver = "pay/profitsharingremovereceiver"                   // 删除分账接收方
+	profitSharingFinish         = "secapi/pay/profitsharingfinish"                    // 完结分账
+	profitSharingReturn         = "secapi/pay/profitsharingreturn"                    // 分账退回
+	profitSharingReturnQuery    = "pay/profitsharingreturnquery"                      // 分账回退结果查询
+	payBank                     = "mmpaysptrans/pay_bank"                             // 企业付款到银行卡API
+	queryBank                   = "mmpaysptrans/query_bank"                           // 查询企业付款到银行卡API
+	getPublicKey                = "https://fraud.mch.weixin.qq.com/risk/getpublickey" // 获取RSA加密公钥API
 
 	// SanBox
 	sandboxGetSignKey   = "https://api.mch.weixin.qq.com/sandboxnew/pay/getsignkey"
@@ -69,7 +84,9 @@ type NotifyRequest struct {
 	ErrCode            string `xml:"err_code,omitempty" json:"err_code,omitempty"`
 	ErrCodeDes         string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
 	Appid              string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid           string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId              string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId           string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	DeviceInfo         string `xml:"device_info,omitempty" json:"device_info,omitempty"`
 	NonceStr           string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign               string `xml:"sign,omitempty" json:"sign,omitempty"`
@@ -99,12 +116,13 @@ type NotifyRequest struct {
 	Attach             string `xml:"attach,omitempty" json:"attach,omitempty"`
 	TimeEnd            string `xml:"time_end,omitempty" json:"time_end,omitempty"`
 }
-
 type UnifiedOrderResponse struct {
 	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"`
 	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	Appid      string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid   string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId      string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId   string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	DeviceInfo string `xml:"device_info,omitempty" json:"device_info,omitempty"`
 	NonceStr   string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign       string `xml:"sign,omitempty" json:"sign,omitempty"`
@@ -121,7 +139,9 @@ type QueryOrderResponse struct {
 	ReturnCode         string `xml:"return_code,omitempty" json:"return_code,omitempty"`
 	ReturnMsg          string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	Appid              string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid           string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId              string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId           string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	NonceStr           string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign               string `xml:"sign,omitempty" json:"sign,omitempty"`
 	ResultCode         string `xml:"result_code,omitempty" json:"result_code,omitempty"`
@@ -160,7 +180,9 @@ type CloseOrderResponse struct {
 	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"`
 	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	Appid      string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid   string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId      string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId   string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	DeviceInfo string `xml:"device_info,omitempty" json:"device_info,omitempty"`
 	NonceStr   string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign       string `xml:"sign,omitempty" json:"sign,omitempty"`
@@ -173,7 +195,9 @@ type ReverseResponse struct {
 	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"`
 	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	Appid      string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid   string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId      string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId   string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	NonceStr   string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign       string `xml:"sign,omitempty" json:"sign,omitempty"`
 	ResultCode string `xml:"result_code,omitempty" json:"result_code,omitempty"`
@@ -189,7 +213,9 @@ type RefundResponse struct {
 	ErrCode             string `xml:"err_code,omitempty" json:"err_code,omitempty"`
 	ErrCodeDes          string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
 	Appid               string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid            string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId               string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId            string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	NonceStr            string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign                string `xml:"sign,omitempty" json:"sign,omitempty"`
 	TransactionId       string `xml:"transaction_id,omitempty" json:"transaction_id,omitempty"`
@@ -224,7 +250,9 @@ type QueryRefundResponse struct {
 	ErrCode              string `xml:"err_code,omitempty" json:"err_code,omitempty"`
 	ErrCodeDes           string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
 	Appid                string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid             string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId                string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId             string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	NonceStr             string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign                 string `xml:"sign,omitempty" json:"sign,omitempty"`
 	TotalRefundCount     string `xml:"total_refund_count,omitempty" json:"total_refund_count,omitempty"`
@@ -296,7 +324,9 @@ type MicropayResponse struct {
 	ReturnCode         string `xml:"return_code,omitempty" json:"return_code,omitempty"`
 	ReturnMsg          string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	Appid              string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid           string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId              string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId           string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	DeviceInfo         string `xml:"device_info,omitempty" json:"device_info,omitempty"`
 	NonceStr           string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign               string `xml:"sign,omitempty" json:"sign,omitempty"`
@@ -324,7 +354,9 @@ type AuthCodeToOpenIdResponse struct {
 	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"`
 	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	Appid      string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid   string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId      string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId   string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	NonceStr   string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign       string `xml:"sign,omitempty" json:"sign,omitempty"`
 	ResultCode string `xml:"result_code,omitempty" json:"result_code,omitempty"`
@@ -355,7 +387,9 @@ type TransfersInfoResponse struct {
 	ErrCodeDes     string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
 	PartnerTradeNo string `xml:"partner_trade_no,omitempty" json:"partner_trade_no,omitempty"`
 	Appid          string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid       string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId          string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId       string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	DetailId       string `xml:"detail_id,omitempty" json:"detail_id,omitempty"`
 	Status         string `xml:"status,omitempty" json:"status,omitempty"`
 	Reason         string `xml:"reason,omitempty" json:"reason,omitempty"`
@@ -386,7 +420,9 @@ type EntrustAppPreResponse struct {
 	ResultCode      string `xml:"result_code,omitempty" json:"result_code,omitempty"`
 	ErrCode         string `xml:"err_code,omitempty" json:"err_code,omitempty"`
 	Appid           string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid        string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId           string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId        string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	Sign            string `xml:"sign,omitempty" json:"sign,omitempty"`
 	NonceStr        string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	PreEntrustwebId string `xml:"pre_entrustweb_id,omitempty" json:"pre_entrustweb_id,omitempty"`
@@ -405,7 +441,9 @@ type EntrustPayingResponse struct {
 	ReturnMsg              string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	ResultCode             string `xml:"result_code,omitempty" json:"result_code,omitempty"`
 	Appid                  string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid               string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId                  string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId               string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	DeviceInfo             string `xml:"device_info,omitempty" json:"device_info,omitempty"`
 	NonceStr               string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign                   string `xml:"sign,omitempty" json:"sign,omitempty"`
@@ -436,7 +474,9 @@ type RefundNotifyRequest struct {
 	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"`
 	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	Appid      string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid   string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId      string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId   string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	NonceStr   string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	ReqInfo    string `xml:"req_info,omitempty" json:"req_info,omitempty"`
 }
@@ -478,15 +518,29 @@ type AccessToken struct {
 	Errmsg      string `json:"errmsg,omitempty"`       // 错误信息
 }
 
-type UserInfo struct {
+// 微信开放平台用户信息
+type Oauth2UserInfo struct {
+	Openid     string   `json:"openid,omitempty"`     // 普通用户的标识，对当前开发者帐号唯一
+	Nickname   string   `json:"nickname,omitempty"`   // 普通用户昵称
+	Sex        int      `json:"sex,omitempty"`        // 普通用户性别，1为男性，2为女性
+	City       string   `json:"city,omitempty"`       // 普通用户个人资料填写的城市
+	Province   string   `json:"province,omitempty"`   // 普通用户个人资料填写的省份
+	Country    string   `json:"country,omitempty"`    // 国家，如中国为CN
+	Headimgurl string   `json:"headimgurl,omitempty"` // 用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。
+	Privilege  []string `json:"privilege,omitempty"`  // 用户特权信息，json数组，如微信沃卡用户为（chinaunicom）
+	Unionid    string   `json:"unionid,omitempty"`    // 用户统一标识。针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的。
+}
+
+// 微信公众号用户信息
+type PublicUserInfo struct {
 	Subscribe      int    `json:"subscribe,omitempty"`       // 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
 	Openid         string `json:"openid,omitempty"`          // 用户唯一标识
 	Nickname       string `json:"nickname,omitempty"`        // 用户的昵称
 	Sex            int    `json:"sex,omitempty"`             // 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
-	Language       string `json:"language,omitempty"`        // 用户的语言，简体中文为zh_CN
 	City           string `json:"city,omitempty"`            // 用户所在城市
 	Province       string `json:"province,omitempty"`        // 用户所在省份
 	Country        string `json:"country,omitempty"`         // 用户所在国家
+	Language       string `json:"language,omitempty"`        // 用户的语言，简体中文为zh_CN
 	Headimgurl     string `json:"headimgurl,omitempty"`      // 用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。
 	SubscribeTime  int    `json:"subscribe_time,omitempty"`  // 用户关注时间，为时间戳。如果用户曾多次关注，则取最后关注时间
 	Unionid        string `json:"unionid,omitempty"`         // 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
@@ -495,8 +549,20 @@ type UserInfo struct {
 	TagidList      []int  `json:"tagid_list,omitempty"`      // 用户被打上的标签ID列表
 	SubscribeScene string `json:"subscribe_scene,omitempty"` // 返回用户关注的渠道来源，ADD_SCENE_SEARCH 公众号搜索，ADD_SCENE_ACCOUNT_MIGRATION 公众号迁移，ADD_SCENE_PROFILE_CARD 名片分享，ADD_SCENE_QR_CODE 扫描二维码，ADD_SCENEPROFILE LINK 图文页内名称点击，ADD_SCENE_PROFILE_ITEM 图文页右上角菜单，ADD_SCENE_PAID 支付后关注，ADD_SCENE_OTHERS 其他
 	QrScene        int    `json:"qr_scene,omitempty"`        // 二维码扫码场景（开发者自定义）
+	QrSceneStr     string `json:"qr_scene_str,omitempty"`    // 二维码扫码场景描述（开发者自定义）
 	Errcode        int    `json:"errcode,omitempty"`         // 错误码
 	Errmsg         string `json:"errmsg,omitempty"`          // 错误信息
+}
+
+type PublicOpenids struct {
+	UserList []*struct {
+		Openid string `json:"openid"`
+		Lang   string `json:"lang"`
+	} `json:"user_list"`
+}
+
+type PublicUserInfoBatch struct {
+	UserInfoList []*PublicUserInfo `json:"user_info_list"`
 }
 
 // 微信小程序解密后 用户手机号结构体
@@ -530,7 +596,9 @@ type OpenIdByAuthCodeRsp struct {
 	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"`
 	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
 	Appid      string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid   string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
 	MchId      string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId   string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
 	NonceStr   string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
 	Sign       string `xml:"sign,omitempty" json:"sign,omitempty"`
 	ResultCode string `xml:"result_code,omitempty" json:"result_code,omitempty"`
@@ -538,8 +606,8 @@ type OpenIdByAuthCodeRsp struct {
 	Openid     string `xml:"openid,omitempty" json:"openid,omitempty"` // 用户唯一标识
 }
 
-// App应用微信第三方登录，code换取access_token
-type AppLoginAccessToken struct {
+// 获取开放平台，access_token 返回结构体
+type Oauth2AccessToken struct {
 	AccessToken  string `json:"access_token,omitempty"`
 	ExpiresIn    int    `json:"expires_in,omitempty"`
 	RefreshToken string `json:"refresh_token,omitempty"`
@@ -550,7 +618,11 @@ type AppLoginAccessToken struct {
 	Errmsg       string `json:"errmsg,omitempty"`  // 错误信息
 }
 
-// 刷新App应用微信第三方登录后，获取的 access_token
+type CheckAccessTokenRsp struct {
+	Errcode int    `json:"errcode,omitempty"` // 错误码
+	Errmsg  string `json:"errmsg,omitempty"`  // 错误信息
+}
+
 type RefreshAppLoginAccessTokenRsp struct {
 	AccessToken  string `json:"access_token,omitempty"`
 	ExpiresIn    int    `json:"expires_in,omitempty"`
@@ -559,4 +631,200 @@ type RefreshAppLoginAccessTokenRsp struct {
 	Scope        string `json:"scope,omitempty"`
 	Errcode      int    `json:"errcode,omitempty"` // 错误码
 	Errmsg       string `json:"errmsg,omitempty"`  // 错误信息
+}
+
+// ProfitSharingResponse 请求分账返回结果
+type ProfitSharingResponse struct {
+	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"` // 返回状态码 SUCCESS/FAIL 此字段是通信标识，非交易标识
+	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`   // 返回信息，如非空，为错误原因
+	//以下字段在return_code为SUCCESS的时候有返回
+	ResultCode    string `xml:"result_code,omitempty" json:"result_code,omitempty"`   // 业务结果 SUCCESS：分账申请接收成功，结果通过分账查询接口查询 FAIL ：提交业务失败
+	ErrCode       string `xml:"err_code,omitempty" json:"err_code,omitempty"`         // 错误代码
+	ErrCodeDes    string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"` // 错误代码描述
+	Appid         string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid      string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
+	MchId         string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId      string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
+	NonceStr      string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`           // 随机字符串
+	Sign          string `xml:"sign,omitempty" json:"sign,omitempty"`                     // 签名
+	TransactionId string `xml:"transaction_id,omitempty" json:"transaction_id,omitempty"` // 微信订单号
+	OutOrderNo    string `xml:"out_order_no,omitempty" json:"out_order_no,omitempty"`     // 商户分账单号
+	OrderId       string `xml:"order_id,omitempty" json:"order_id,omitempty"`             // 微信分账单号
+}
+
+// ProfitSharingQueryResponse 查询分账结果
+type ProfitSharingQueryResponse struct {
+	ReturnCode    string                   `xml:"return_code,omitempty" json:"return_code,omitempty"`       // 返回状态码 SUCCESS/FAIL 此字段是通信标识，非交易标识
+	ReturnMsg     string                   `xml:"return_msg,omitempty" json:"return_msg,omitempty"`         // 返回信息，如非空，为错误原因
+	ResultCode    string                   `xml:"result_code,omitempty" json:"result_code,omitempty"`       // 业务结果 SUCCESS：分账申请接收成功，结果通过分账查询接口查询 FAIL ：提交业务失败
+	ErrCode       string                   `xml:"err_code,omitempty" json:"err_code,omitempty"`             // 错误代码
+	ErrCodeDes    string                   `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`     // 错误代码描述
+	MchId         string                   `xml:"mch_id,omitempty" json:"mch_id,omitempty"`                 // 商户号
+	NonceStr      string                   `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`           // 随机字符串
+	Sign          string                   `xml:"sign,omitempty" json:"sign,omitempty"`                     // 签名
+	TransactionId string                   `xml:"transaction_id,omitempty" json:"transaction_id,omitempty"` // 微信订单号
+	OutOrderNo    string                   `xml:"out_order_no,omitempty" json:"out_order_no,omitempty"`     // 商户分账单号
+	OrderId       string                   `xml:"order_id,omitempty" json:"order_id,omitempty"`             // 微信分账单号
+	Status        string                   `xml:"status,omitempty" json:"status,omitempty"`                 // 分账单状态 ACCEPTED—受理成功 PROCESSING—处理中 FINISHED—处理完成 CLOSED—处理失败，已关单
+	CloseReason   string                   `xml:"close_reason,omitempty" json:"close_reason,omitempty"`     // 关单原因 NO_AUTH:分账授权已解除
+	Receivers     []*profitSharingReceiver `xml:"receivers,omitempty" json:"receivers,omitempty"`
+}
+
+type profitSharingReceiver struct {
+	Amount       int    `xml:"amount,omitempty" json:"amount,omitempty"`           // 分账金额 分账金额，单位为分，只能为整数，不能超过原订单支付金额及最大分账比例金额
+	Description  string `xml:"description,omitempty" json:"description,omitempty"` // 分账描述
+	ReceiverType string `xml:"type,omitempty" json:"type,omitempty"`               // 分账接收方类型 MERCHANT_ID：商户ID ;PERSONAL_OPENID：个人openid
+	Account      string `xml:"account,omitempty" json:"account,omitempty"`         // 分账接收方账号
+	Result       string `xml:"result,omitempty" json:"result,omitempty"`           // 分账结果 PENDING:待分账 SUCCESS:分账成功 ADJUST:分账失败待调账 RETURNED:已转回分账方 CLOSED: 已关闭
+	FinishTime   string `xml:"finish_time,omitempty" json:"finish_time,omitempty"` // 分账完成时间
+	FailReason   string `xml:"fail_reason,omitempty" json:"fail_reason,omitempty"` // 分账失败原因 ACCOUNT_ABNORMAL:分账接收账户异常 NO_RELATION：分账关系已解除 RECEIVER_HIGH_RISK:高风险接收方
+}
+
+// ProfitSharingAddReceiverResponse 添加分账接收者结果
+type ProfitSharingAddReceiverResponse struct {
+	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"` // 返回状态码 SUCCESS/FAIL 此字段是通信标识，非交易标识
+	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`   // 返回信息，如非空，为错误原因
+	//以下字段在return_code为SUCCESS的时候有返回
+	ResultCode string `xml:"result_code,omitempty" json:"result_code,omitempty"`   // 业务结果 SUCCESS：分账申请接收成功，结果通过分账查询接口查询 FAIL ：提交业务失败
+	ErrCode    string `xml:"err_code,omitempty" json:"err_code,omitempty"`         // 错误代码
+	ErrCodeDes string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"` // 错误代码描述
+	Appid      string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid   string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
+	MchId      string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId   string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`
+	NonceStr   string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"` // 随机字符串
+	Sign       string `xml:"sign,omitempty" json:"sign,omitempty"`           // 签名
+	Receiver   string `xml:"receiver,omitempty" json:"receiver,omitempty"`   // 接收方
+}
+
+// ProfitSharingReturnResponse 分账退回响应结果
+type ProfitSharingReturnResponse struct {
+	ReturnCode        string `xml:"return_code,omitempty" json:"return_code,omitempty"`   // 返回状态码 SUCCESS/FAIL 此字段是通信标识，非交易标识
+	ErrCode           string `xml:"err_code,omitempty" json:"err_code,omitempty"`         // 错误代码
+	ErrorMsg          string `xml:"error_msg,omitempty" json:"error_msg,omitempty"`       // 返回信息 如果返回状态码为FAIL，则本字段存在，且为失败的错误信息
+	ErrCodeDes        string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"` // 错误代码描述
+	Appid             string `xml:"appid,omitempty" json:"appid,omitempty"`
+	SubAppid          string `xml:"sub_appid,omitempty" json:"sub_appid,omitempty"`
+	MchId             string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	SubMchId          string `xml:"sub_mch_id,omitempty" json:"sub_mch_id,omitempty"`                   // 调用接口提供的公众账号ID
+	NonceStr          string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`                     // 随机字符串
+	Sign              string `xml:"sign,omitempty" json:"sign,omitempty"`                               // 签名
+	OrderId           string `xml:"order_id,omitempty" json:"order_id,omitempty"`                       // 微信分账单号
+	OutOrderNo        string `xml:"out_order_no,omitempty" json:"out_order_no,omitempty"`               // 商户分账单号
+	OutReturnNo       string `xml:"out_return_no,omitempty" json:"out_return_no,omitempty"`             // 商户回退单号 调用接口提供的商户系统内部的回退单号
+	ReturnNo          string `xml:"return_no,omitempty" json:"return_no,omitempty"`                     // 微信回退单号 微信分账回退单号，微信系统返回的唯一标识
+	ReturnAccountType string `xml:"return_account_type,omitempty" json:"return_account_type,omitempty"` // 回退方类型
+	ReturnAccount     string `xml:"return_account,omitempty" json:"return_account,omitempty"`           // 回退方账号
+	ReturnAmount      string `xml:"return_amount,omitempty" json:"return_amount,omitempty"`             // 回退金额
+	Description       string `xml:"description,omitempty" json:"description,omitempty"`                 // 退回描述
+	Result            string `xml:"result,omitempty" json:"result,omitempty"`                           // 退回结果
+	FailReason        string `xml:"fail_reason,omitempty" json:"fail_reason,omitempty"`                 // 失败原因
+	FinishTime        string `xml:"finish_time,omitempty" json:"finish_time,omitempty"`                 // 完成时间
+}
+
+type PayBankResponse struct {
+	ReturnCode     string `xml:"return_code,omitempty" json:"return_code,omitempty"`
+	ReturnMsg      string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
+	ResultCode     string `xml:"result_code,omitempty" json:"result_code,omitempty"`
+	ErrCode        string `xml:"err_code,omitempty" json:"err_code,omitempty"`
+	ErrCodeDes     string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
+	MchId          string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	PartnerTradeNo string `xml:"partner_trade_no,omitempty" json:"partner_trade_no,omitempty"`
+	Amount         string `xml:"amount,omitempty" json:"amount,omitempty"`
+	NonceStr       string `xml:"nonce_str,omitempty" json:"nonce_str,omitempty"`
+	Sign           string `xml:"sign,omitempty" json:"sign,omitempty"`
+	PaymentNo      string `xml:"payment_no,omitempty" json:"payment_no,omitempty"`
+	CmmsAmt        string `xml:"cmms_amt,omitempty" json:"cmms_amt,omitempty"`
+}
+
+type QueryBankResponse struct {
+	ReturnCode     string `xml:"return_code,omitempty" json:"return_code,omitempty"`
+	ReturnMsg      string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
+	ResultCode     string `xml:"result_code,omitempty" json:"result_code,omitempty"`
+	ErrCode        string `xml:"err_code,omitempty" json:"err_code,omitempty"`
+	ErrCodeDes     string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
+	MchId          string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	PartnerTradeNo string `xml:"partner_trade_no,omitempty" json:"partner_trade_no,omitempty"`
+	PaymentNo      string `xml:"payment_no,omitempty" json:"payment_no,omitempty"`
+	BankNoMd5      string `xml:"bank_no_md5,omitempty" json:"bank_no_md5,omitempty"`
+	TrueNameMd5    string `xml:"true_name_md5,omitempty" json:"true_name_md5,omitempty"`
+	Amount         string `xml:"amount,omitempty" json:"amount,omitempty"`
+	Status         string `xml:"status,omitempty" json:"status,omitempty"`
+	CmmsAmt        string `xml:"cmms_amt,omitempty" json:"cmms_amt,omitempty"`
+	CreateTime     string `xml:"create_time,omitempty" json:"create_time,omitempty"`
+	PaySuccTime    string `xml:"pay_succ_time,omitempty" json:"pay_succ_time,omitempty"`
+	Reason         string `xml:"reason,omitempty" json:"reason,omitempty"`
+}
+
+type RSAPublicKeyResponse struct {
+	ReturnCode string `xml:"return_code,omitempty" json:"return_code,omitempty"`
+	ReturnMsg  string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
+	ResultCode string `xml:"result_code,omitempty" json:"result_code,omitempty"`
+	ErrCode    string `xml:"err_code,omitempty" json:"err_code,omitempty"`
+	ErrCodeDes string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
+	MchId      string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	PubKey     string `xml:"pub_key,omitempty" json:"pub_key,omitempty"`
+}
+
+type SendCashRedResponse struct {
+	ReturnCode  string `xml:"return_code,omitempty" json:"return_code,omitempty"`
+	ReturnMsg   string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
+	ResultCode  string `xml:"result_code,omitempty" json:"result_code,omitempty"`
+	ErrCode     string `xml:"err_code,omitempty" json:"err_code,omitempty"`
+	ErrCodeDes  string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
+	MchBillno   string `xml:"mch_billno,omitempty" json:"mch_billno,omitempty"`
+	MchId       string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	Wxappid     string `xml:"wxappid,omitempty" json:"wxappid,omitempty"`
+	ReOpenid    string `xml:"re_openid,omitempty" json:"re_openid,omitempty"`
+	TotalAmount string `xml:"total_amount,omitempty" json:"total_amount,omitempty"`
+	SendListid  string `xml:"send_listid,omitempty" json:"send_listid,omitempty"`
+}
+
+type SendAppletRedResponse struct {
+	ReturnCode  string `xml:"return_code,omitempty" json:"return_code,omitempty"`
+	ReturnMsg   string `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
+	ResultCode  string `xml:"result_code,omitempty" json:"result_code,omitempty"`
+	ErrCode     string `xml:"err_code,omitempty" json:"err_code,omitempty"`
+	ErrCodeDes  string `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
+	MchBillno   string `xml:"mch_billno,omitempty" json:"mch_billno,omitempty"`
+	MchId       string `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	Wxappid     string `xml:"wxappid,omitempty" json:"wxappid,omitempty"`
+	ReOpenid    string `xml:"re_openid,omitempty" json:"re_openid,omitempty"`
+	TotalAmount string `xml:"total_amount,omitempty" json:"total_amount,omitempty"`
+	SendListid  string `xml:"send_listid,omitempty" json:"send_listid,omitempty"`
+	Packages    string `xml:"package,omitempty" json:"package,omitempty"`
+}
+
+type QueryRedRecordResponse struct {
+	ReturnCode   string  `xml:"return_code,omitempty" json:"return_code,omitempty"`
+	ReturnMsg    string  `xml:"return_msg,omitempty" json:"return_msg,omitempty"`
+	ResultCode   string  `xml:"result_code,omitempty" json:"result_code,omitempty"`
+	ErrCode      string  `xml:"err_code,omitempty" json:"err_code,omitempty"`
+	ErrCodeDes   string  `xml:"err_code_des,omitempty" json:"err_code_des,omitempty"`
+	MchBillno    string  `xml:"mch_billno,omitempty" json:"mch_billno,omitempty"`
+	MchId        string  `xml:"mch_id,omitempty" json:"mch_id,omitempty"`
+	DetailId     string  `xml:"detail_id,omitempty" json:"detail_id,omitempty"`
+	Status       string  `xml:"status,omitempty" json:"status,omitempty"`
+	SendType     string  `xml:"send_type,omitempty" json:"send_type,omitempty"`
+	HbType       string  `xml:"hb_type,omitempty" json:"hb_type,omitempty"`
+	TotalNum     string  `xml:"total_num,omitempty" json:"total_num,omitempty"`
+	TotalAmount  string  `xml:"total_amount,omitempty" json:"total_amount,omitempty"`
+	Reason       string  `xml:"reason,omitempty" json:"reason,omitempty"`
+	SendTime     string  `xml:"send_time,omitempty" json:"send_time,omitempty"`
+	RefundTime   string  `xml:"refund_time,omitempty" json:"refund_time,omitempty"`
+	RefundAmount string  `xml:"refund_amount,omitempty" json:"refund_amount,omitempty"`
+	Wishing      string  `xml:"wishing,omitempty" json:"wishing,omitempty"`
+	Remark       string  `xml:"remark,omitempty" json:"remark,omitempty"`
+	ActName      string  `xml:"act_name,omitempty" json:"act_name,omitempty"`
+	Hblist       *hbList `xml:"hblist,omitempty" json:"hblist,omitempty"`
+}
+
+type hbList struct {
+	HbinfoList []*hbinfo `xml:"hbinfo,omitempty" json:"hbinfo,omitempty"`
+}
+
+type hbinfo struct {
+	Openid  string `xml:"openid,omitempty" json:"openid,omitempty"`
+	Amount  string `xml:"amount,omitempty" json:"amount,omitempty"`
+	RcvTime string `xml:"rcv_time,omitempty" json:"rcv_time,omitempty"`
 }

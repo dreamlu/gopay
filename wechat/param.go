@@ -22,8 +22,8 @@ import (
 type Country int
 
 // 设置支付国家（默认：中国国内）
-//    根据支付地区情况设置国家
-//    country：<China：中国国内，China2：中国国内（冗灾方案），SoutheastAsia：东南亚，Other：其他国家>
+//	根据支付地区情况设置国家
+//	country：<China：中国国内，China2：中国国内（冗灾方案），SoutheastAsia：东南亚，Other：其他国家>
 func (w *Client) SetCountry(country Country) (client *Client) {
 	w.mu.Lock()
 	switch country {
@@ -43,10 +43,10 @@ func (w *Client) SetCountry(country Country) (client *Client) {
 }
 
 // 添加微信证书 Path 路径
-//    certFilePath：apiclient_cert.pem 路径
-//    keyFilePath：apiclient_key.pem 路径
-//    pkcs12FilePath：apiclient_cert.p12 路径
-//    返回err
+//	certFilePath：apiclient_cert.pem 路径
+//	keyFilePath：apiclient_key.pem 路径
+//	pkcs12FilePath：apiclient_cert.p12 路径
+//	返回err
 func (w *Client) AddCertFilePath(certFilePath, keyFilePath, pkcs12FilePath interface{}) (err error) {
 	if err = checkCertFilePath(certFilePath, keyFilePath, pkcs12FilePath); err != nil {
 		return err
@@ -80,7 +80,7 @@ func (w *Client) addCertConfig(certFilePath, keyFilePath, pkcs12FilePath interfa
 	if certFilePath == nil && keyFilePath == nil && pkcs12FilePath == nil {
 		w.mu.RLock()
 		defer w.mu.RUnlock()
-		if &w.certificate != nil && w.certPool != nil {
+		if w.certPool != nil {
 			tlsConfig = &tls.Config{
 				Certificates:       []tls.Certificate{w.certificate},
 				RootCAs:            w.certPool,

@@ -1,3 +1,73 @@
+版本号：Release 1.5.20
+发布时间：2020/09/30 23:58
+修改记录：
+   (1) 微信：client 添加 DebugSwitch 开关，默认关闭，不输出 请求参数和返回参数，通过 client.DebugSwitch = gopay.DebugOn 打开
+   (2) 支付宝：client 添加 DebugSwitch 开关，默认关闭，不输出 请求参数和返回参数，通过 client.DebugSwitch = gopay.DebugOn 打开
+   (3) QQ：client 添加 DebugSwitch 开关，默认关闭，不输出 请求参数和返回参数，通过 client.DebugSwitch = gopay.DebugOn 打开
+   (4) 更新 Gotil
+
+版本号：Release 1.5.19
+发布时间：2020/09/20 23:58
+修改记录：
+   (1) 微信：修复 client.ProfitSharingQuery() 接口的Bug，https://github.com/iGoogle-ink/gopay/issues/68
+   (2) 微信：优化 client.doProdPost()
+   (3) 支付宝：优化 client.doAliPay()
+   (4) 微信：项目文件区分改动，开放平台接口和微信公众号区分
+   (5) 微信：替换 wechat.GetAppLoginAccessToken() = > wechat.GetOauth2AccessToken()
+   (6) 微信：替换 wechat.RefreshAppLoginAccessToken() = > wechat.RefreshOauth2AccessToken()
+   (7) 微信：替换 wechat.GetUserInfoOpen() = > wechat.GetOauth2UserInfo()
+   (8) 微信：替换 wechat.GetUserInfo() = > wechat.GetPublicUserInfo()
+   (9) 微信：新增 wechat.CheckOauth2AccessToken() 检验授权凭证（access_token）是否有效
+   (10) 微信：新增 wechat.GetPublicUserInfoBatch() 批量获取用户基本信息（微信公众号）
+   (11) 微信：新增 client.SendCashRed() 发放现金红包
+   (12) 微信：新增 client.SendGroupCashRed() 发放现金裂变红包
+   (13) 微信：新增 client.SendAppletRed() 发放小程序红包
+   (14) 微信：新增 client.QueryRedRecord() 查询红包记录
+   (15) QQ：新增 client.SendCashRed() 创建现金红包，（未经测试，有条件的帮忙测一下吧，有问题提PR）
+   (16) QQ：新增 client.DownloadRedListFile() 对账单下载，（未经测试，有条件的帮忙测一下吧，有问题提PR）
+   (17) QQ：新增 client.QueryRedInfo() 查询红包详情，（未经测试，有条件的帮忙测一下吧，有问题提PR）
+
+版本号：Release 1.5.18
+发布时间：2020/08/29 18:30
+修改记录：
+   (1) 微信：修复 client.AddCertFilePath() 无效的Bug
+   (2) QQ：修复 client.AddCertFilePath() 无效的Bug
+   (3) Gotil：升级 gotil 到 v1.0.7-beta2 版本
+   (4) 支付宝：OpenAuthTokenAppResponse 结构体中 ExpiresIn、ReExpiresIn 字段改为int64（有用户反馈返回的是int类型，但文档写的是string），如果此处有问题，请立马联系改回去。
+
+版本号：Release 1.5.17
+发布时间：2020/08/23 15:30
+修改记录：
+   (1) 微信：Response model 增加字段
+   (2) ReadMe：修改部分遗留未更改的文档内容
+   (3) 支付宝：添加证书由只支持证书路径，改为支持证书路径或者这书Byte数组
+   (4) 支付宝：修复SystemOauthToken()方法未添加 AppCertSN 和 AliPayRootCertSN 的问题
+
+版本号：Release 1.5.16
+发布时间：2020/07/29 18:30
+修改记录：
+   (1) 微信：新增公共方法：wechat.GetUserInfoOpen()，微信开放平台：获取用户个人信息(UnionID机制)
+   (2) Gotil：升级 gotil 到 v1.0.4 版本
+   (3) 微信：新增ReadMe说明，微信支付下单等操作可用沙箱环境测试是否成功，但真正支付时，请使用正式环境，isProd = true，不然会报错
+
+版本号：Release 1.5.15
+发布时间：2020/07/09 18:30
+修改记录：
+   (1) 微信：新增client方法：client.ProfitSharing()，请求单次分账
+   (2) 微信：新增client方法：client.MultiProfitSharing()，请求多次分账
+   (3) 微信：新增client方法：client.ProfitSharingQuery()，查询分账结果
+   (4) 微信：新增client方法：client.ProfitSharingAddReceiver()，添加分账接收方
+   (5) 微信：新增client方法：client.ProfitSharingRemoveReceiver()，删除分账接收方
+   (6) 微信：新增client方法：client.ProfitSharingFinish()，完结分账
+   (7) 微信：新增client方法：client.ProfitSharingReturn()，分账回退
+   (8) 微信：新增client方法：client.ProfitSharingReturnQuery()，分账回退结果查询
+   (9) 微信：新增client方法：client.PayBank()，企业付款到银行卡API
+   (10) 微信：新增client方法：client.QueryBank()，查询企业付款到银行卡API
+   (11) 微信：新增client方法：client.GetRSAPublicKey()，获取RSA加密公钥API
+   (12) 微信：修改client方法名：client.PostRequest() -> client.PostWeChatAPISelf()
+   (13) QQ：修改client方法名：client.PostRequest() -> client.PostQQAPISelf()
+   (14) 说明：方法未经严格测试，还请开发者在开始使用时确认是否正常使用，有问题请提 issue
+
 版本号：Release 1.5.14
 发布时间：2020/06/27 3:30
 修改记录：
